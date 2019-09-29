@@ -18,8 +18,8 @@ if(os.path.exists("./known/known_encodings.txt")):
     with open("./known/known_encodings.txt", "rb") as fp:
         known_face_encodings = pickle.load(fp)
 
-if(os.path.exists("known/known_names.txt")):
-    with open("known/known_names.txt", "rb") as fp:
+if(os.path.exists("./known/known_names.txt")):
+    with open("./known/known_names.txt", "rb") as fp:
         known_face_names = pickle.load(fp)
 
 
@@ -33,9 +33,11 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('c'):
         # make sure only person is in frame
         face_locations = face_recognition.face_locations(frame)
-        face_encodings = face_recognition.face_encodings(
+        try:
+       	    face_encodings = face_recognition.face_encodings(
             frame, face_locations)[0]
-
+        except:
+            print("no face detected!")
         known_face_encodings.append(face_encodings)
         known_face_names.append(name)
 

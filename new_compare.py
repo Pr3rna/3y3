@@ -19,10 +19,10 @@ startTime = time.time()
 video_capture = cv2.VideoCapture(0)
 
 # "known" folder consist preprocessed encodings and names
-with open("/lib/security/howdy/known/known_encodings.txt", "rb") as fp:
+with open("/lib/security/third_eye/known/known_encodings.txt", "rb") as fp:
     known_face_encodings = pickle.load(fp)
 
-with open("/lib/security/howdy/known/known_names.txt", "rb") as fp:
+with open("/lib/security/third_eye/known/known_names.txt", "rb") as fp:
     known_face_names = pickle.load(fp)
 
 print(known_face_names)

@@ -21,8 +21,9 @@ def doAuth(pamh):
 	if config.getboolean("core", "disabled"):
 		sys.exit(0)
 
-
-	pamh.conversation(pamh.Message(pamh.PAM_TEXT_INFO, "Attemptinga face detection"))
+	if "SSH_CONNECTION" in os.environ or "SSH_CLIENT" in os.environ or "SSHD_OPTS" in os.environ:
+		sys.exit(0)
+	pamh.conversation(pamh.Message(pamh.PAM_TEXT_INFO, "Attempting a face detection"))
 
 	# Run compare as python3 subprocess to circumvent python version and import issues
 	status = subprocess.call(["/usr/bin/python3", os.path.dirname(os.path.abspath(__file__)) + "/new_compare.py", pamh.get_user()])

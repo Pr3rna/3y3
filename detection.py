@@ -9,6 +9,7 @@ def exi(name):
     a = open('./test.txt', 'w')
     a.write(name)
     a.close()
+    sys.exit()
 
 
 fpsLimit = 1  # throttle limit
@@ -16,10 +17,10 @@ startTime = time.time()
 video_capture = cv2.VideoCapture(0)
 
 # "known" folder consist preprocessed encodings and names
-with open( "./known/known_encodings.txt", "rb") as fp:
+with open( "/lib/security/third_eye/known/known_encodings.txt", "rb") as fp:
     known_face_encodings = pickle.load(fp)
 
-with open("./known/known_names.txt", "rb") as fp:
+with open("/lib/security/third_eye/known/known_names.txt", "rb") as fp:
     known_face_names = pickle.load(fp)
 
 face_locations = []
