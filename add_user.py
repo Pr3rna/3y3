@@ -11,15 +11,15 @@ print(name)
 known_face_encodings = []
 known_face_names = []
 
-if not os.path.exists("./known/"):
-    os.makedirs(("./known"))
+if not os.path.exists("/lib/security/third_eye/known/"):
+    os.makedirs(("/lib/security/third_eye/known"))
 
-if(os.path.exists("./known/known_encodings.txt")):
-    with open("./known/known_encodings.txt", "rb") as fp:
+if(os.path.exists("/lib/security/third_eye/known/known_encodings.txt")):
+    with open("/lib/security/third_eye/known/known_encodings.txt", "rb") as fp:
         known_face_encodings = pickle.load(fp)
 
-if(os.path.exists("./known/known_names.txt")):
-    with open("./known/known_names.txt", "rb") as fp:
+if(os.path.exists("/lib/security/third_eye/known/known_names.txt")):
+    with open("/lib/security/third_eye/known/known_names.txt", "rb") as fp:
         known_face_names = pickle.load(fp)
 
 
@@ -44,10 +44,10 @@ while True:
         break
 
 
-with open("./known/known_encodings.txt", "wb") as fp:
+with open("/lib/security/third_eye/known/known_encodings.txt", "wb") as fp:
     pickle.dump(known_face_encodings, fp)
 
-with open("./known/known_names.txt", "wb") as fp:
+with open("/lib/security/third_eye/known/known_names.txt", "wb") as fp:
     pickle.dump(known_face_names, fp)
 
 print("Encodings saved for user: " + name)

@@ -6,10 +6,9 @@ import pickle
 import sys
 
 def exi(name):
-    a = open('./test.txt', 'w')
+    a = open('/lib/security/third_eye/test.txt', 'w')
     a.write(name)
     a.close()
-    sys.exit()
 
 
 fpsLimit = 1  # throttle limit
@@ -38,10 +37,13 @@ while running:
             count = count + 1
             print(count)
             if count > 3:
+                print('video timeout has been reached')
                 video_capture.release()
                 cv2.destroyAllWindows()
+
                 exi("unknown")
-                running=False
+                sys.exit()
+                continue
             small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
             rgb_small_frame = small_frame[:, :, ::-1]
             face_locations = face_recognition.face_locations(
@@ -63,12 +65,14 @@ while running:
                     print("name of the person", name) 
                     exi(name)  # person detected
                     running=False
+                    break
                     
                 else:
                     video_capture.release()
                     cv2.destroyAllWindows()
                     exi("guest")
                     running=False
+                    break
             startTime = time.time()
 
         #cv2.imshow('Video', frame)
@@ -80,4 +84,4 @@ while running:
             print("Terminate!")
             exi("unknown")  # person not detected
             running=False
-            
+
